@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6t0pgz00000m0nnzlsddvk7/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj6t1pg5q0006lsnni68ivn0k/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -318,7 +318,298 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/13/cj6t0pgz00000m0nnzlsddvk7/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
+                <a class="post-title-link" href="/2017/05/16/cj6t1pg5q0006lsnni68ivn0k/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T13:09:16+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MySQL 配置从任意IP可访问的账户：<br><code>user</code>表中用户名<code>@</code>后面是<code>%</code>百分号的都是任意地址可连接的<br>如：<code>&#39;souco&#39;@&#39;%&#39;</code></p>
+<p>另外：<br>查看 MySQL 数据库中所有用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; SELECT DISTINCT CONCAT(&apos;User: &apos;&apos;&apos;,user,&apos;&apos;&apos;@&apos;&apos;&apos;,host,&apos;&apos;&apos;;&apos;) AS query FROM mysql.user;</div></pre></td></tr></table></figure></p>
+<p>查看数据库中具体某个用户的权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show grants for &apos;cactiuser&apos;@&apos;%&apos;;   </div><div class="line">mysql&gt; select * from mysql.user where user=&apos;cactiuser&apos; \G</div></pre></td></tr></table></figure></p>
+<p>查看 user表结构，需要具体的项可结合表结构来查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; desc mysql.user;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj6t1pg5s0008lsnn2lcvc5n9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/28/cj6t1pg5s0008lsnn2lcvc5n9/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-28T13:38:20+08:00">
+                2017-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>执行数据库导出语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldump -uroot -p qyw &gt; E:/sql/20170428125848qyw.sql</div></pre></td></tr></table></figure></p>
+<p>报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqldump: Got error: 1449: The user specified as a definer (&apos;root&apos;@&apos;%&apos;) does not exist when using LOCK TABLES</div></pre></td></tr></table></figure></p>
+<p>权限问题，授权给<code>root</code>所有<code>sql</code>权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mysql&gt; grant all privileges on *.* to root@&quot;%&quot; identified by &quot;.&quot;;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div><div class="line"></div><div class="line">mysql&gt; flush privileges;</div><div class="line">Query OK, 0 rows affected (0.00 sec)</div></pre></td></tr></table></figure></p>
+<p>再次执行<code>mysqldump -uroot -p qyw &gt; E:/sql/20170428125848qyw.sql</code>成功。</p>
+<p>另外附上今天发现的数据导出导出的问题。<br>因为平常都是使用<code>sqlyog</code>导入导出数据，最近一个项目的数据库比较大，转而使用命令行的导入。<br>今天突然发现命令行导入一个数据库非常慢，然后研究了下原因，发现<code>sqlyog</code>导出的数据库<code>sql</code>文件，使用命令导入时非常慢，导入速度还没有<code>sqlyog</code>导入的快。<br>比较了下<code>sqlyog</code>导出的<code>sql</code>文件与<code>mysqldump</code>导出的sql文件，发现两者还是有些区别的。当然，也可能是<code>sqlyog</code>导出的时候有些选项没有勾选。<br>尝试后发现，与<code>sqlyog</code>导出的<code>sql</code>文件相比，<code>mysqldump</code>导出的<code>sql</code>文件在使用命令导入时非常快。<br>因此，使用上来说，如果数据比较小，用<code>sqlyog</code>导出导入就可以。如果数据比较大，用<code>mysqldump</code>导出然后用命令导入就比较快。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6t1pg5l0002lsnnhi5up1gh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/13/cj6t1pg5l0002lsnnhi5up1gh/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
         
 
         <div class="post-meta">
@@ -442,7 +733,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t0pgz90005m0nn5ysgx4ao/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t1pg5w000clsnnkd1fpzlf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -461,7 +752,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t0pgz90005m0nn5ysgx4ao/" itemprop="url">常用Git命令</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6t1pg5w000clsnnkd1fpzlf/" itemprop="url">常用Git命令</a></h1>
         
 
         <div class="post-meta">
@@ -562,6 +853,9 @@
 <li><code>git branch -D feature</code> 当<code>feature</code>分支当中有未合并的内容，也强行删除<code>feature</code>分支</li>
 <li><code>git checkout HEAD~</code> 切换到匿名分支（当前版本上一个版本）</li>
 </ul>
+<h3 id="关于提交代码到GitHub"><a href="#关于提交代码到GitHub" class="headerlink" title="关于提交代码到GitHub"></a>关于提交代码到<code>GitHub</code></h3><ul>
+<li><code>git remote add origin git@github.com:yourName/yourRepo.git</code> 添加远程地址到当前仓库</li>
+</ul>
 <h3 id="详谈checkout命令"><a href="#详谈checkout命令" class="headerlink" title="详谈checkout命令"></a>详谈<code>checkout</code>命令</h3><ul>
 <li><code>git checkout HEAD~ README.md</code> 当给定某个文件名时，Git 会从指定的提交中拷贝文件到暂存区域和工作目录</li>
 <li><code>git checkout README.md</code> 如果命令中没有给定具体的快照 ID ，则从暂存区域回复指定文件到工作目录</li>
@@ -628,7 +922,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t0pgz80004m0nn49w1w31i/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t1pg5t0009lsnnd5bwf7g9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -647,7 +941,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t0pgz80004m0nn49w1w31i/" itemprop="url">mysql快速创建数据和拥有此数据库所有权限的用户</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6t1pg5t0009lsnnd5bwf7g9/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
         
 
         <div class="post-meta">
@@ -771,7 +1065,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6t0pgz50001m0nno4cs77g6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6t1pg5f0000lsnn0i4amgpr/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -790,7 +1084,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/11/cj6t0pgz50001m0nno4cs77g6/" itemprop="url">IDEA内存参数配置</a></h1>
+                <a class="post-title-link" href="/2017/04/11/cj6t1pg5f0000lsnn0i4amgpr/" itemprop="url">IDEA内存参数配置</a></h1>
         
 
         <div class="post-meta">
@@ -922,7 +1216,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6t0pgza0006m0nntoq8ulck/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6t1pg5y000elsnnqfp274gt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -941,7 +1235,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/10/cj6t0pgza0006m0nntoq8ulck/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
+                <a class="post-title-link" href="/2017/04/10/cj6t1pg5y000elsnnqfp274gt/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
         
 
         <div class="post-meta">
@@ -1093,7 +1387,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t0ph15000um0nnu8kknjzn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t1pg60000ilsnnmqdc7w22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1112,7 +1406,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/06/cj6t0ph15000um0nnu8kknjzn/" itemprop="url">部署hexo到github遇到的坑</a></h1>
+                <a class="post-title-link" href="/2017/04/06/cj6t1pg60000ilsnnmqdc7w22/" itemprop="url">部署hexo到github遇到的坑</a></h1>
         
 
         <div class="post-meta">
@@ -1225,156 +1519,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t0ph17000wm0nnd3vickqv/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="souco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/big.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="souco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/06/cj6t0ph17000wm0nnd3vickqv/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T16:00:00+08:00">
-                2017-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1423,7 +1567,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1445,7 +1589,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
