@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj6t1pg5q0006lsnni68ivn0k/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/cj6t3qerp000cy8nno59klez1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -318,7 +318,156 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/16/cj6t1pg5q0006lsnni68ivn0k/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
+                <a class="post-title-link" href="/2017/08/26/cj6t3qerp000cy8nno59klez1/" itemprop="url">基于GithubPage的hexo博客搭建简明教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T17:25:23+08:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="0-相关文档"><a href="#0-相关文档" class="headerlink" title="0.相关文档"></a>0.相关文档</h3><p>hexo文档(<a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">https://hexo.io/zh-cn/docs/deployment.html</a>)<br>NexT文档(<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">http://theme-next.iissnan.com/</a>)</p>
+<h3 id="1-安装-Node（必须）"><a href="#1-安装-Node（必须）" class="headerlink" title="1.安装 Node（必须）"></a>1.安装 Node（必须）</h3><ul>
+<li>官网下载安装即可。<h3 id="2-安装-Git（必须）"><a href="#2-安装-Git（必须）" class="headerlink" title="2.安装 Git（必须）"></a>2.安装 Git（必须）</h3></li>
+<li>官网下载安装即可。<h3 id="3-申请-GitHub（必须）"><a href="#3-申请-GitHub（必须）" class="headerlink" title="3.申请 GitHub（必须）"></a>3.申请 GitHub（必须）</h3></li>
+<li>已有。<h3 id="4-正式安装-HEXO"><a href="#4-正式安装-HEXO" class="headerlink" title="4.正式安装 HEXO"></a>4.正式安装 HEXO</h3>Node 和 Git 都安装好后执行如下命令安装 hexo ：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install -g hexo</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5.初始化"></a>5.初始化</h3><p>创建一个文件夹，如：Blog ，下文统称此目录为<code>/</code>，未提及则默认为此目录<br>在博客根目录下里执行 hexo init 的。命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure></p>
+<h3 id="6-生成静态页面"><a href="#6-生成静态页面" class="headerlink" title="6.生成静态页面"></a>6.生成静态页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate //（hexo g  简写）</div></pre></td></tr></table></figure>
+<h3 id="7-本地启动"><a href="#7-本地启动" class="headerlink" title="7.本地启动"></a>7.本地启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server () //（hexo s 简写）</div></pre></td></tr></table></figure>
+<h3 id="8-配置-NexT-主题"><a href="#8-配置-NexT-主题" class="headerlink" title="8. 配置 NexT 主题"></a>8. 配置 NexT 主题</h3><h4 id="8-1-下载主题"><a href="#8-1-下载主题" class="headerlink" title="8.1 下载主题"></a>8.1 下载主题</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<h4 id="8-2-修改站点配置文件"><a href="#8-2-修改站点配置文件" class="headerlink" title="8.2 修改站点配置文件"></a>8.2 修改站点配置文件</h4><p>打开站点配置文件（<code>config.yml</code>）,找到 theme 字段，并将其值更改为 next ,如：Blog<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next</div></pre></td></tr></table></figure></p>
+<h4 id="8-3-主题设定"><a href="#8-3-主题设定" class="headerlink" title="8.3 主题设定"></a>8.3 主题设定</h4><h5 id="8-3-0-设置主题外观"><a href="#8-3-0-设置主题外观" class="headerlink" title="8.3.0 设置主题外观"></a>8.3.0 设置主题外观</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#scheme: Muse</div><div class="line">#scheme: Mist</div><div class="line">scheme: Pisces</div></pre></td></tr></table></figure>
+<h5 id="8-3-1-设置侧栏"><a href="#8-3-1-设置侧栏" class="headerlink" title="8.3.1 设置侧栏"></a>8.3.1 设置侧栏</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sidebar:</div><div class="line">  position: left</div><div class="line">  display: hide</div></pre></td></tr></table></figure>
+<h5 id="8-3-2-设置头像"><a href="#8-3-2-设置头像" class="headerlink" title="8.3.2 设置头像"></a>8.3.2 设置头像</h5><p>将头像文件放置在<code>/themes/next/source/images/</code>下。修改主题配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avatar: /images/filename.png //此处为你的文件名</div></pre></td></tr></table></figure></p>
+<h4 id="8-4-设置菜单及菜单页面"><a href="#8-4-设置菜单及菜单页面" class="headerlink" title="8.4 设置菜单及菜单页面"></a>8.4 设置菜单及菜单页面</h4><h5 id="8-4-1-在主题配置文件设置要显示的菜单"><a href="#8-4-1-在主题配置文件设置要显示的菜单" class="headerlink" title="8.4.1 在主题配置文件设置要显示的菜单:"></a>8.4.1 在主题配置文件设置要显示的菜单:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories/</div><div class="line">  about: /about/</div><div class="line">  archives: /archives/</div><div class="line">  tags: /tags/</div><div class="line">  sitemap: /sitemap.xml</div><div class="line">  commonweal: /404/</div></pre></td></tr></table></figure>
+<h5 id="8-4-2-添加标签页"><a href="#8-4-2-添加标签页" class="headerlink" title="8.4.2 添加标签页"></a>8.4.2 添加标签页</h5><p>新建页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page tags</div></pre></td></tr></table></figure></p>
+<p>将生成的页面（<code>/source/tags/index.md</code>）的类型设置为 tags :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: 标签</div><div class="line">date: 2014-12-22 12:39:04</div><div class="line">type: &quot;tags&quot;</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<h5 id="8-4-3-添加分类页"><a href="#8-4-3-添加分类页" class="headerlink" title="8.4.3 添加分类页"></a>8.4.3 添加分类页</h5><p>新建页面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new page categories</div></pre></td></tr></table></figure></p>
+<p>将生成的页面（<code>/source/categories/index.md</code>）的类型设置为 categories :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: 标签</div><div class="line">date: 2014-12-22 12:39:04</div><div class="line">type: &quot;categories&quot;</div><div class="line">---</div></pre></td></tr></table></figure></p>
+<h5 id="8-5-配置友情链接"><a href="#8-5-配置友情链接" class="headerlink" title="8.5 配置友情链接"></a>8.5 配置友情链接</h5><p>在主题配置文件中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">links:</div><div class="line">  baidu: https://www.baidu.com</div></pre></td></tr></table></figure></p>
+<h3 id="配置搜索"><a href="#配置搜索" class="headerlink" title="配置搜索"></a>配置搜索</h3><p>安装 <code>hexo-generator-searchdb</code>，在站点的根目录下执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-searchdb --save</div></pre></td></tr></table></figure></p>
+<p>编辑站点配置文件，新增以下内容到任意位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">search:</div><div class="line">  path: search.xml</div><div class="line">  field: post</div><div class="line">  format: html</div><div class="line">  limit: 10000</div></pre></td></tr></table></figure></p>
+<p>编辑 主题配置文件，启用本地搜索功能：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Local search</div><div class="line">local_search:</div><div class="line">  enable: true</div></pre></td></tr></table></figure></p>
+<h3 id="站点配置"><a href="#站点配置" class="headerlink" title="站点配置"></a>站点配置</h3><p>以下都是基于站点配置文件（<code>config.yml</code>）</p>
+<ul>
+<li>配置语言为简体中文<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">language: zh-Hans</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###配置提交到 github 的信息<br>在站点配置文件下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: git@github.com:***/***.github.io.git</div><div class="line">  branch: master</div><div class="line">  message: article update &#123;&#123; now(&apos;YYYY-MM-DD HH:mm:ss&apos;) &#125;&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj6t3qere0002y8nn9lbi706q/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/16/cj6t3qere0002y8nn9lbi706q/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
         
 
         <div class="post-meta">
@@ -444,7 +593,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj6t1pg5s0008lsnn2lcvc5n9/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj6t3qern0009y8nng9cex8yo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -463,7 +612,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/28/cj6t1pg5s0008lsnn2lcvc5n9/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
+                <a class="post-title-link" href="/2017/04/28/cj6t3qern0009y8nng9cex8yo/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
         
 
         <div class="post-meta">
@@ -590,7 +739,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6t1pg5l0002lsnnhi5up1gh/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6t3qerk0006y8nnq05ad26o/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -609,7 +758,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/13/cj6t1pg5l0002lsnnhi5up1gh/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
+                <a class="post-title-link" href="/2017/04/13/cj6t3qerk0006y8nnq05ad26o/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
         
 
         <div class="post-meta">
@@ -733,7 +882,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t1pg5w000clsnnkd1fpzlf/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t3qerq000ey8nnavfbn36u/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -752,7 +901,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t1pg5w000clsnnkd1fpzlf/" itemprop="url">常用Git命令</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6t3qerq000ey8nnavfbn36u/" itemprop="url">常用Git命令</a></h1>
         
 
         <div class="post-meta">
@@ -922,7 +1071,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t1pg5t0009lsnnd5bwf7g9/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t3qerm0008y8nnbmi4b7qc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -941,7 +1090,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t1pg5t0009lsnnd5bwf7g9/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6t3qerm0008y8nnbmi4b7qc/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
         
 
         <div class="post-meta">
@@ -1065,7 +1214,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6t1pg5f0000lsnn0i4amgpr/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6t3qer80000y8nna143fv8z/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1084,7 +1233,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/11/cj6t1pg5f0000lsnn0i4amgpr/" itemprop="url">IDEA内存参数配置</a></h1>
+                <a class="post-title-link" href="/2017/04/11/cj6t3qer80000y8nna143fv8z/" itemprop="url">IDEA内存参数配置</a></h1>
         
 
         <div class="post-meta">
@@ -1216,7 +1365,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6t1pg5y000elsnnqfp274gt/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6t3qers000iy8nnjve0si6z/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1235,7 +1384,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/10/cj6t1pg5y000elsnnqfp274gt/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
+                <a class="post-title-link" href="/2017/04/10/cj6t3qers000iy8nnjve0si6z/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
         
 
         <div class="post-meta">
@@ -1387,7 +1536,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t1pg60000ilsnnmqdc7w22/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t3qeru000ly8nnu7ero82x/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1406,7 +1555,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/06/cj6t1pg60000ilsnnmqdc7w22/" itemprop="url">部署hexo到github遇到的坑</a></h1>
+                <a class="post-title-link" href="/2017/04/06/cj6t3qeru000ly8nnu7ero82x/" itemprop="url">部署hexo到github遇到的坑</a></h1>
         
 
         <div class="post-meta">
@@ -1567,7 +1716,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1589,7 +1738,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
