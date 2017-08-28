@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/cj6t3qerp000cy8nno59klez1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj6w0xs3j000c6gnng4wsowu3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -318,7 +318,294 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/26/cj6t3qerp000cy8nno59klez1/" itemprop="url">基于GithubPage的hexo博客搭建简明教程</a></h1>
+                <a class="post-title-link" href="/2017/08/28/cj6w0xs3j000c6gnng4wsowu3/" itemprop="url">oracle常用操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T18:25:44+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="建立表空间和用户的步骤："><a href="#建立表空间和用户的步骤：" class="headerlink" title="建立表空间和用户的步骤："></a>建立表空间和用户的步骤：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 用户建立：</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> 用户名 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">"密码"</span>;</div><div class="line"><span class="comment">-- 授权：</span></div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> 用户名;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">to</span>  用户名;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">tablespace</span> <span class="keyword">to</span>  用户名;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">view</span> <span class="keyword">to</span>  用户名;</div><div class="line"></div><div class="line"><span class="comment">-- 表空间</span></div><div class="line"><span class="comment">-- 建立表空间(一般建N个存数据的表空间和一个索引空间)：</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> 表空间名</div><div class="line"><span class="keyword">datafile</span> <span class="string">' 路径(要先建好路径)\***.dbf  '</span> <span class="keyword">size</span> *M</div><div class="line">tempfile <span class="string">' 路径\***.dbf '</span> <span class="keyword">size</span> *M</div><div class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span>  <span class="comment">--自动增长</span></div><div class="line"><span class="comment">-- 还有一些定义大小的命令，看需要</span></div><div class="line"> <span class="keyword">default</span> <span class="keyword">storage</span>(</div><div class="line"> <span class="keyword">initial</span> <span class="number">100</span>K,</div><div class="line"> <span class="keyword">next</span> <span class="number">100</span>k,</div><div class="line">);</div><div class="line"></div><div class="line"><span class="comment">-- 例子：创建表空间</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> DEMOSPACE</div><div class="line"><span class="keyword">datafile</span> <span class="string">'E:/oracle_tablespaces/DEMOSPACE_TBSPACE.dbf'</span></div><div class="line"><span class="keyword">size</span> <span class="number">1500</span>M</div><div class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> <span class="keyword">next</span> <span class="number">5</span>M <span class="keyword">maxsize</span> <span class="number">3000</span>M;</div><div class="line"><span class="comment">-- 删除表空间</span></div><div class="line"><span class="keyword">drop</span> <span class="keyword">tablespace</span> DEMOSPACE <span class="keyword">including</span> <span class="keyword">contents</span> <span class="keyword">and</span> <span class="keyword">datafiles</span></div><div class="line"></div><div class="line"><span class="comment">-- 用户权限</span></div><div class="line"><span class="comment">-- 授予用户使用表空间的权限：</span></div><div class="line"><span class="keyword">alter</span> <span class="keyword">user</span> 用户名 <span class="keyword">quota</span> <span class="keyword">unlimited</span> <span class="keyword">on</span> 表空间;</div><div class="line"><span class="comment">-- 或 alter user 用户名 quota *M on 表空间;</span></div><div class="line"></div><div class="line"><span class="comment">-- 表空间</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLESPACE</span> sdt</div><div class="line"><span class="keyword">DATAFILE</span> <span class="string">'F:\tablespace\demo'</span> <span class="keyword">size</span> <span class="number">800</span>M</div><div class="line">         <span class="keyword">EXTENT</span> <span class="keyword">MANAGEMENT</span> <span class="keyword">LOCAL</span> <span class="keyword">SEGMENT</span> <span class="keyword">SPACE</span> <span class="keyword">MANAGEMENT</span> <span class="keyword">AUTO</span>;</div><div class="line"><span class="comment">-- 索引表空间</span></div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLESPACE</span> sdt_Index</div><div class="line"><span class="keyword">DATAFILE</span> <span class="string">'F:\tablespace\demo'</span> <span class="keyword">size</span> <span class="number">512</span>M</div><div class="line">         <span class="keyword">EXTENT</span> <span class="keyword">MANAGEMENT</span> <span class="keyword">LOCAL</span> <span class="keyword">SEGMENT</span> <span class="keyword">SPACE</span> <span class="keyword">MANAGEMENT</span> <span class="keyword">AUTO</span>;</div><div class="line"></div><div class="line"><span class="comment">--2.建用户</span></div><div class="line"><span class="keyword">create</span> <span class="keyword">user</span> demo <span class="keyword">identified</span> <span class="keyword">by</span> demo</div><div class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> <span class="keyword">std</span>;</div><div class="line"></div><div class="line"><span class="comment">-- 在11G中有个新特性，当表无数据时，不分配segment，以节省空间，导致不能导出空表</span></div><div class="line"><span class="comment">-- 建立了空的数据库后，马上执行以下关闭此特性</span></div><div class="line"><span class="keyword">alter</span> <span class="keyword">system</span> <span class="keyword">set</span> deferred_segment_creation=flase sscope=<span class="keyword">spfile</span>;</div><div class="line"></div><div class="line"><span class="comment">--3.赋权</span></div><div class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">session</span> <span class="keyword">to</span> demo</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">any</span> <span class="keyword">sequence</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">any</span> <span class="keyword">table</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">delete</span> <span class="keyword">any</span> <span class="keyword">table</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">insert</span> <span class="keyword">any</span> <span class="keyword">table</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">any</span> <span class="keyword">table</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">unlimited</span> <span class="keyword">tablespace</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">execute</span> <span class="keyword">any</span> <span class="keyword">procedure</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">update</span> <span class="keyword">any</span> <span class="keyword">table</span> <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> <span class="keyword">create</span> <span class="keyword">any</span> <span class="keyword">view</span> <span class="keyword">to</span> demo;</div><div class="line"></div><div class="line"><span class="comment">--4.导入导出相关权限</span></div><div class="line"><span class="keyword">grant</span> exp_full_database <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> imp_full_database <span class="keyword">to</span> demo;</div><div class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> demo;</div><div class="line"></div><div class="line"><span class="comment">-- 导入导出命令</span></div><div class="line"><span class="comment">-- ip导出方式：</span></div><div class="line">exp demo/demo@127.0.0.1:1521/orcl file=f:/f.dmp full=y</div><div class="line">exp demo/demo@orcl file=f:/f.dmp full=y</div><div class="line">imp demo/demo@orcl file=f:/f.dmp full=y ignore=y</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj6w0xs3s000s6gnnrylwou9h/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/cj6w0xs3s000s6gnnrylwou9h/" itemprop="url">采用html的a标签，href链接文件名为中文时无法下载解决方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T18:20:28+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>采用<code>html</code>的<code>a</code>标签，<code>href</code>链接文件名为中文时无法下载解决方案    </p>
+<p>最简单的下载文件的方式，大家都清楚，是采用<code>html</code>中的a标签的<code>href</code>连接形式进行下载。只需要将文件的全路径赋值给<code>href</code>即可。但是这样的话，有的文件默认可以下载，有的则浏览器在网页上直接打开，有时候还会是乱码。这跟客户端没有关系，客户端完全是被动的，他在接收到<code>html</code>流的时候，分析报头，如果报头中指定了文件的下载方式，比如，为<code>excel</code>，则他就会弹框，提示用户是在线打开，还是说保存下载，如果报头中没有指定，浏览器就直接打开，这样对于特殊文件，很容易会产生乱码。所以为了避免这一点，需要在服务器端进行指定。<br>如果采用程序开发向客户端输出流进行下载的话，很容易指定，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">response.setContentType(<span class="string">"application/x-msdownload; charset=utf-8"</span>);</div><div class="line">    <span class="keyword">if</span> (request.getHeader(<span class="string">"User-Agent"</span>).toLowerCase().indexOf(<span class="string">"firefox"</span>) &gt; <span class="number">0</span>)</div><div class="line">        response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; filename="</span></div><div class="line">                + <span class="keyword">new</span> String(filename.getBytes(<span class="string">"UTF-8"</span>), <span class="string">"ISO8859-1"</span>));<span class="comment">//firefox浏览器  </span></div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (request.getHeader(<span class="string">"User-Agent"</span>).toUpperCase().indexOf(<span class="string">"MSIE"</span>) &gt; <span class="number">0</span>)</div><div class="line">        response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; filename="</span></div><div class="line">                + URLEncoder.encode(filename, <span class="string">"UTF-8"</span>));<span class="comment">//IE浏览器</span></div></pre></td></tr></table></figure></p>
+<p>如果用<code>&lt;a&gt;</code>的连接的话，需要修改服务的设置，对于<code>tomcat</code>而言，查看<code>conf/web.xml</code>，寻找所有的<code>mime</code>类型，如果存在你需要下载的文件的话，即不用进行修改，如果不存在的话，需要添加，然后重启服务器，给<code>&lt;a&gt;</code>标签赋值要下载文件的全路径即可（比如<code>xls</code>的文件就不用修改配置，而<code>rar</code>就需要配置，<code>zip</code>也不需要配置）；注意，如果路径中包含中文的话，还需要稍微改动，否则可能会无法下载，需要在<code>Server.xml</code>文件中，在<code>http</code>端口设置处，需要加上编码，如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8282"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span>   </span></div><div class="line"><span class="tag">               <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span>   </span></div><div class="line"><span class="tag">               <span class="attr">redirectPort</span>=<span class="string">"8443"</span>   </span></div><div class="line"><span class="tag">               <span class="attr">URIEncoding</span>=<span class="string">"utf-8"</span> /&gt;</span></div></pre></td></tr></table></figure></p>
+<p>注意<code>URIEncoding</code>，之所以加上，是因为，针对<code>tomcat</code>而言，<code>tomcat</code>对于<code>get</code>方式请求过来的编码，是在这里进行配置的，对于<code>post</code>请求过来的编码解析方式，可以用传统的<code>request.setContent**</code>方式进行配置，所以文件路径中存在中文名，你必须得告诉服务器怎么解析，以什么样编码进行解析即可！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/cj6w0xs3l000e6gnnsblvkxjn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/26/cj6w0xs3l000e6gnnsblvkxjn/" itemprop="url">基于GithubPage的hexo博客搭建简明教程</a></h1>
         
 
         <div class="post-meta">
@@ -340,6 +627,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -448,7 +757,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj6t3qere0002y8nn9lbi706q/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj6w0xs3e00066gnnj0u2xfkz/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -467,7 +776,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/16/cj6t3qere0002y8nn9lbi706q/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
+                <a class="post-title-link" href="/2017/05/16/cj6w0xs3e00066gnnj0u2xfkz/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
         
 
         <div class="post-meta">
@@ -593,7 +902,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj6t3qern0009y8nng9cex8yo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj6w0xs3g00086gnnstdvfk40/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -612,7 +921,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/28/cj6t3qern0009y8nng9cex8yo/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
+                <a class="post-title-link" href="/2017/04/28/cj6w0xs3g00086gnnstdvfk40/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
         
 
         <div class="post-meta">
@@ -739,7 +1048,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6t3qerk0006y8nnq05ad26o/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj6w0xs3900026gnnqka6owl5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -758,7 +1067,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/13/cj6t3qerk0006y8nnq05ad26o/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
+                <a class="post-title-link" href="/2017/04/13/cj6w0xs3900026gnnqka6owl5/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
         
 
         <div class="post-meta">
@@ -882,7 +1191,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t3qerq000ey8nnavfbn36u/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6w0xs3o000i6gnn61godlih/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -901,7 +1210,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t3qerq000ey8nnavfbn36u/" itemprop="url">常用Git命令</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6w0xs3o000i6gnn61godlih/" itemprop="url">常用Git命令</a></h1>
         
 
         <div class="post-meta">
@@ -1071,7 +1380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6t3qerm0008y8nnbmi4b7qc/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj6w0xs3h00096gnnqezah7y8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1090,7 +1399,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/12/cj6t3qerm0008y8nnbmi4b7qc/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
+                <a class="post-title-link" href="/2017/04/12/cj6w0xs3h00096gnnqezah7y8/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
         
 
         <div class="post-meta">
@@ -1214,7 +1523,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6t3qer80000y8nna143fv8z/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj6w0xs3400006gnn1ezufzup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1233,7 +1542,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/11/cj6t3qer80000y8nna143fv8z/" itemprop="url">IDEA内存参数配置</a></h1>
+                <a class="post-title-link" href="/2017/04/11/cj6w0xs3400006gnn1ezufzup/" itemprop="url">IDEA内存参数配置</a></h1>
         
 
         <div class="post-meta">
@@ -1365,7 +1674,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6t3qers000iy8nnjve0si6z/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/cj6w0xs3p000l6gnnq0k9o2ob/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1384,7 +1693,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/10/cj6t3qers000iy8nnjve0si6z/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
+                <a class="post-title-link" href="/2017/04/10/cj6w0xs3p000l6gnnq0k9o2ob/" itemprop="url">[转]每天一个Linux命令(1)：ls命令</a></h1>
         
 
         <div class="post-meta">
@@ -1523,154 +1832,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/cj6t3qeru000ly8nnu7ero82x/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="souco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/big.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="souco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/06/cj6t3qeru000ly8nnu7ero82x/" itemprop="url">部署hexo到github遇到的坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T19:02:31+08:00">
-                2017-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>其实 Hexo 的文档非常非常的详细。<br>但是我一开始其实不是对着 Hexo 的文档部署，因为还有一些别的步骤，例如部分 Git 和 GitHub 的相关申请配置等等。<br>所以遇到坑了吧。如下</p>
-<ol>
-<li>项目<code>deploy</code>到 GitHub 后，访问总是<code>404</code><br>查了半天也没查出为啥。参照了别人的项目，发现少个<code>CNAME</code>文件，于是在 GitHub 加上去，结果成功了。郁闷的是重新发布过后又<code>404</code>了。看了下，<code>CNAME</code>文件又消失了。才想到每次生成网页，<code>hexo/public</code>下的文件都会被覆盖。于是查了下，不想被覆盖的内容需要放在<code>hexo/resource</code>目录下，如<code>CNAME</code>、<code>favo.icon</code>等文件。</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1716,7 +1884,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1727,7 +1895,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1738,7 +1906,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
