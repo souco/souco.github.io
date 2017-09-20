@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/cj7sb6dw4000cbgnngx96a32h/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/cj7sbgb6x000iwonnf3ckbnyt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -318,7 +318,439 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/20/cj7sb6dw4000cbgnngx96a32h/" itemprop="url">配置springMVC返回json数据</a></h1>
+                <a class="post-title-link" href="/2017/09/20/cj7sbgb6x000iwonnf3ckbnyt/" itemprop="url">从达梦数据库适配oracle数据库问题合集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T08:53:16+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="ORA-00923-未找到要求的-FROM-关键字"><a href="#ORA-00923-未找到要求的-FROM-关键字" class="headerlink" title="ORA-00923: 未找到要求的 FROM 关键字"></a>ORA-00923: 未找到要求的 FROM 关键字</h4><p><code>sql</code>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select *,</div><div class="line">	row_number() over (partition by projectid order by createtime desc) rn    </div><div class="line">from c_ins_business_info</div></pre></td></tr></table></figure></p>
+<p>报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java.sql.SQLException: ORA-00923: 未找到要求的 FROM 关键字; </div><div class="line">bad SQL grammar []; nested exception is java.sql.SQLException: ORA-00923: 未找到要求的 FROM 关键字</div></pre></td></tr></table></figure></p>
+<p>如果有全选<code>*</code>的，需要在前面加上改表的简写或全称。<br>修改后<code>sql</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select info.*,</div><div class="line">	row_number() over (partition by projectid order by createtime desc) rn    </div><div class="line">from c_ins_business_info info</div></pre></td></tr></table></figure></p>
+<h4 id="ORA-00932-数据类型不一致-应为-CHAR-但却获得-NUMBER"><a href="#ORA-00932-数据类型不一致-应为-CHAR-但却获得-NUMBER" class="headerlink" title="ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER"></a>ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER</h4><p><code>sql</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">round(sum(case when substr(psortparent,13,1) in (&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;) then grossinvestment else 0 end)/10000,2) &quot;d2&quot;,</div></pre></td></tr></table></figure></p>
+<p>在这里，<code>grossinvestment</code> 是 <code>number</code> 类型<br>报错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java.sql.SQLException: ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER; </div><div class="line">bad SQL grammar []; nested exception is java.sql.SQLException: ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER</div></pre></td></tr></table></figure></p>
+<p>不知道为什么，这里的<code>0</code>要加上引号，也是醉了。<br>修改后<code>sql</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">round(sum(case when substr(psortparent,13,1) in (&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;) then grossinvestment else &apos;0&apos; end)/10000,2) &quot;d2&quot;,</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/cj7sbgb6x000xwonnefynaaa3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/cj7sbgb6x000xwonnefynaaa3/" itemprop="url">通过spring配置文件配置mybatis的dialect</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T08:51:52+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Spring整合MyBatis配置dialect"><a href="#Spring整合MyBatis配置dialect" class="headerlink" title="Spring整合MyBatis配置dialect"></a><code>Spring</code>整合<code>MyBatis</code>配置<code>dialect</code></h3><p>公司最近的项目使用了达梦数据库和<code>MyBatis</code>,由于<code>MyBatis</code>的分页插件<code>PageHelper</code>支持的数据库类型未包括达梦数据库，由于众所周知的原因，我们配置数据库方言<code>dialect</code>为<code>oracle</code>。<br>以下是在<code>Spring</code>配置文件中的配置。另外还有在<code>MyBatis</code>配置文件的配置方式，网上都有就不贴了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;!-- myBatis --&gt;</div><div class="line">&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;</div><div class="line">	&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;</div><div class="line">	&lt;!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 --&gt;</div><div class="line">	&lt;property name=&quot;mapperLocations&quot;&gt;</div><div class="line">		&lt;array&gt;</div><div class="line">			&lt;value&gt;classpath:app/**/mapping/*Mapper.xml&lt;/value&gt;</div><div class="line">			&lt;value&gt;classpath:com/tjsoft/dataopen/mapping/*Mapper.xml&lt;/value&gt;</div><div class="line">		&lt;/array&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">	&lt;property name=&quot;plugins&quot;&gt;</div><div class="line">		&lt;array&gt;</div><div class="line">			&lt;bean class=&quot;com.github.pagehelper.PageHelper&quot;&gt;</div><div class="line">				&lt;property name=&quot;properties&quot;&gt;</div><div class="line">					&lt;value&gt;</div><div class="line">						dialect=oracle</div><div class="line">					&lt;/value&gt;</div><div class="line">				&lt;/property&gt;</div><div class="line">			&lt;/bean&gt;</div><div class="line">		&lt;/array&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/cj7sbgb6h0002wonn98dpn8lp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/cj7sbgb6h0002wonn98dpn8lp/" itemprop="url">My97DatePicker插件报错的问题解决</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T08:50:02+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###<br>项目页面中使用了时间选择插件<code>My97DatePicker</code>插件。<br>父页面通过<code>iframe</code>引入改页面。<br>父页面点击<code>iframe</code>以外的内容时，报错：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Uncaught <span class="built_in">TypeError</span>: Cannot read property <span class="string">'getComputedStyle'</span> <span class="keyword">of</span> <span class="literal">null</span></div></pre></td></tr></table></figure></p>
+<p>在父页面引入改插件<code>WdatePicker.js</code>即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/20/cj7sbgb6x0013wonng19jocpz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="souco">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/big.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="souco">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/20/cj7sbgb6x0013wonng19jocpz/" itemprop="url">配置springMVC返回json数据</a></h1>
         
 
         <div class="post-meta">
@@ -392,7 +824,7 @@
       
         
           
-            <h3 id="配置SpringMVC返回Json数据"><a href="#配置SpringMVC返回Json数据" class="headerlink" title="配置SpringMVC返回Json数据"></a>配置<code>SpringMVC</code>返回<code>Json</code>数据</h3><p>同时避免<code>json</code>数据属性名有引号的情况：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mappingJacksonHttpMessageConverter"</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">				<span class="comment">&lt;!-- 避免Ajax获取的json属性名带有引号 --&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">				<span class="comment">&lt;!-- 避免IE执行AJAX时,返回JSON出现下载文件 --&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line">	<span class="comment">&lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">bean</span></span></div><div class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"messageConverters"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"mappingJacksonHttpMessageConverter"</span> /&gt;</span><span class="comment">&lt;!-- json转换器 --&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
+            <h3 id="配置SpringMVC返回Json数据"><a href="#配置SpringMVC返回Json数据" class="headerlink" title="配置SpringMVC返回Json数据"></a>配置<code>SpringMVC</code>返回<code>Json</code>数据</h3><p>同时避免<code>json</code>数据属性名有引号的情况：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mappingJacksonHttpMessageConverter"</span> <span class="attr">class</span>=<span class="string">"org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"supportedMediaTypes"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!-- 避免Ajax获取的json属性名带有引号 --&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>application/json;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">			<span class="comment">&lt;!-- 避免IE执行AJAX时,返回JSON出现下载文件 --&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>text/html;charset=UTF-8<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span></span></div><div class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"messageConverters"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"mappingJacksonHttpMessageConverter"</span> /&gt;</span><span class="comment">&lt;!-- json转换器 --&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
 
           
         
@@ -441,7 +873,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj7sb6dwz001fbgnn8s13i3en/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj7sbgb6x000ewonnu23ulu38/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -460,7 +892,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/cj7sb6dwz001fbgnn8s13i3en/" itemprop="url">oracle常用操作</a></h1>
+                <a class="post-title-link" href="/2017/08/28/cj7sbgb6x000ewonnu23ulu38/" itemprop="url">oracle常用操作</a></h1>
         
 
         <div class="post-meta">
@@ -583,7 +1015,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj7sb6dwk001bbgnnyj51mt7u/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/28/cj7sbgb6x0015wonno2o92xcx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -602,7 +1034,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/cj7sb6dwk001bbgnnyj51mt7u/" itemprop="url">采用html的a标签，href链接文件名为中文时无法下载解决方案</a></h1>
+                <a class="post-title-link" href="/2017/08/28/cj7sbgb6x0015wonno2o92xcx/" itemprop="url">采用html的a标签，href链接文件名为中文时无法下载解决方案</a></h1>
         
 
         <div class="post-meta">
@@ -728,7 +1160,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/cj7sb6dwk0019bgnnlrthbypn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/26/cj7sbgb6x000twonnaabur9cb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -747,7 +1179,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/26/cj7sb6dwk0019bgnnlrthbypn/" itemprop="url">基于GithubPage的hexo博客搭建简明教程</a></h1>
+                <a class="post-title-link" href="/2017/08/26/cj7sbgb6x000twonnaabur9cb/" itemprop="url">基于GithubPage的hexo博客搭建简明教程</a></h1>
         
 
         <div class="post-meta">
@@ -899,7 +1331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj7sb6dv90000bgnn4k5m1phn/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/cj7sbgb6h0006wonnouherbn8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -918,7 +1350,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/16/cj7sb6dv90000bgnn4k5m1phn/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
+                <a class="post-title-link" href="/2017/05/16/cj7sbgb6h0006wonnouherbn8/" itemprop="url">MySQL配置从任意IP可访问的账户</a></h1>
         
 
         <div class="post-meta">
@@ -1044,7 +1476,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj7sb6dw4000gbgnn0hs42uhq/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/28/cj7sbgb6h000cwonn7503oc4x/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1063,7 +1495,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/28/cj7sb6dw4000gbgnn0hs42uhq/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
+                <a class="post-title-link" href="/2017/04/28/cj7sbgb6h000cwonn7503oc4x/" itemprop="url">The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法</a></h1>
         
 
         <div class="post-meta">
@@ -1190,7 +1622,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj7sb6dvp0001bgnnkstqxz8u/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/13/cj7sbgb6h0008wonntvowpko1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="souco">
@@ -1209,7 +1641,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/13/cj7sb6dvp0001bgnnkstqxz8u/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
+                <a class="post-title-link" href="/2017/04/13/cj7sbgb6h0008wonntvowpko1/" itemprop="url">Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题</a></h1>
         
 
         <div class="post-meta">
@@ -1320,489 +1752,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj7sb6dvp0006bgnn5sdlvdpk/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="souco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/big.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="souco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/12/cj7sb6dvp0006bgnn5sdlvdpk/" itemprop="url">常用Git命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T17:15:03+08:00">
-                2017-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><code>git init</code> 初始化 <code>Git</code></li>
-<li><code>git add README.md</code> 将文件添加到暂存区域</li>
-<li><code>git add .</code> 将当前目录下的所有文件添加到暂存区域</li>
-<li><code>git commit -m &quot;add a readme file&quot;</code> 将文件提交到<code>Git</code>仓库</li>
-<li><code>git clone https://github.com/n0tr00t/Sreg</code> 克隆<code>GitHub</code>上别人的项目</li>
-<li><code>git commit -am &quot;change the license file&quot;</code> 一步实现<code>add</code>和<code>commit</code></li>
-<li><code>git reset HEAD~</code> 把<code>Git</code>仓库的文件还原到暂存区域</li>
-<li><code>git checkout</code> 把暂存区域的文件还原到工作目录</li>
-<li><code>git log</code> 查看历史提交记录</li>
-<li><code>git reset 11c2929</code> 回滚到特定<code>ID</code>的快照</li>
-<li><code>git reset --hard 31f46be</code> 根据快照<code>ID</code>往前滚</li>
-<li><code>git reflog</code> 查看每次执行完命令，<code>HEAD</code>指向的版本号</li>
-<li><code>git commit --amend -m &quot;新的提交说明&quot;</code> 修改最后一次提交</li>
-<li><code>git rm test.py</code> 删除工作目录和暂存区域的文件（取消跟踪）</li>
-<li><code>git checkout -- README.md</code> <code>checkout</code>单个文件</li>
-<li><code>git mv game.py wordgame.py</code>  重命名文件</li>
-<li><code>git branch feature</code> 创建分支</li>
-<li><code>git log --decorate [--oneline]</code> 查看当前分支情况[<code>oneline</code>单行查看]</li>
-<li><code>git log --oneline --decorate --graph --all</code> 查看系统分支情况[<code>graph</code>绘制分支图,<code>all</code>显示所有分支]</li>
-<li><code>git checkout feature</code> 切换分支</li>
-<li><code>git merge feature</code> 合并<code>feature</code>分支</li>
-<li><code>git checkout -b feature2</code> 创建一个新的分支<code>feature2</code>并<code>checkout</code>出来</li>
-<li><code>git branch -d feature2</code> 删除<code>feature2</code>分支</li>
-<li><code>git branch -D feature</code> 当<code>feature</code>分支当中有未合并的内容，也强行删除<code>feature</code>分支</li>
-<li><code>git checkout HEAD~</code> 切换到匿名分支（当前版本上一个版本）</li>
-</ul>
-<h3 id="关于提交代码到GitHub"><a href="#关于提交代码到GitHub" class="headerlink" title="关于提交代码到GitHub"></a>关于提交代码到<code>GitHub</code></h3><ul>
-<li><code>git remote add origin git@github.com:yourName/yourRepo.git</code> 添加远程地址到当前仓库</li>
-</ul>
-<h3 id="详谈checkout命令"><a href="#详谈checkout命令" class="headerlink" title="详谈checkout命令"></a>详谈<code>checkout</code>命令</h3><ul>
-<li><code>git checkout HEAD~ README.md</code> 当给定某个文件名时，Git 会从指定的提交中拷贝文件到暂存区域和工作目录</li>
-<li><code>git checkout README.md</code> 如果命令中没有给定具体的快照 ID ，则从暂存区域回复指定文件到工作目录</li>
-<li><code>git checkout --README.md</code> 如果存在<code>README.md</code>分支的话，指定恢复文件，而不是切换分支</li>
-</ul>
-<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><ul>
-<li><code>git status</code>命令时显示<code>On branch master</code>说明我们位于一个叫做<code>master</code>的分支里，这是默认的分支。</li>
-<li><code>git reset HEAD~</code>命令中的<code>HEAD~</code>表示<code>HEAD</code>的上一个版本，如<code>HEAD~~</code>表示<code>HEAD</code>的上上个版本，<code>HEAD~~~</code>表示<code>HEAD</code>的上上个版本，<code>HEAD~10</code>表示<code>HEAD</code>之前第10个版本。</li>
-<li><code>git reset --soft HEAD~</code>表示只移动<code>HEAD</code>的指向，但并不会将快照回滚到暂存区域。（相当于撤销上一次的提交）</li>
-<li><code>git reset [--mixed(默认，可省略)] HEAD~</code>将快照回滚到暂存区域。</li>
-<li><code>git reset --hard HEAD~</code>表示不仅移动<code>HEAD</code>的指向，将快照回滚到暂时区域，它还将暂存区域的文件还原到工作目录。</li>
-<li><code>git commit --amend</code>如果后面不附加提交说明的话，会进入修改说明的页面。可以使用快捷键<code>Shift + z + z</code>或者<code>：q！</code>退出。</li>
-<li><code>git rm -f test.py</code>要删除的文件在当前工作目录和暂存区域的内容不一致时，删除会跳出提示，此时添加<code>-f</code>参数即可。</li>
-<li><code>git rm --cache test.py</code>删除暂存区域的文件（保留工作目录的）。</li>
-<li><code>echo *.temp &gt; .gitignore</code> 创建一个<code>.gitignore</code>文件，并让 <code>Git</code> 忽略所有的<code>.temp</code>后缀的文件。</li>
-<li><code>develop</code>开发分支，<code>feature</code>功能分支，<code>release</code>预发布分支，<code>hotfix</code>维护分支。</li>
-<li><code>reset</code>会移动<code>HEAD</code>所在分支的指向，而<code>checkout</code>命令只会移动<code>HEAD</code>自身来指向另一个分支。所以，<code>checkout</code>命令更加安全。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/12/cj7sb6dvp0004bgnn86jokajy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="souco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/big.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="souco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/12/cj7sb6dvp0004bgnn86jokajy/" itemprop="url">MySQL快速创建数据和拥有此数据库所有权限的用户</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-12T12:57:36+08:00">
-                2017-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="string">`jsprun`</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</div><div class="line">CREATE USER 'jsprun'@'localhost' IDENTIFIED BY 'jsprun';#①用户名②本地③密码</div><div class="line"><span class="keyword">GRANT</span> ALL <span class="keyword">PRIVILEGES</span> <span class="keyword">ON</span> jsprun.* <span class="keyword">TO</span> <span class="string">'jsprun'</span>@<span class="string">'localhost'</span>;</div><div class="line"><span class="keyword">FLUSH</span> <span class="keyword">PRIVILEGES</span>;</div></pre></td></tr></table></figure>
-<p>其他参考：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">1、用管理员登陆mysql</div><div class="line">2、创建数据库create database db01;</div><div class="line">3、创建用户</div><div class="line">user01只能本地访问</div><div class="line">CREATE USER user01@&apos;localhost&apos; IDENTIFIED BY &apos;password1&apos;;</div><div class="line">user02可以远程访问</div><div class="line">CREATE USER user02@&apos;%&apos; IDENTIFIED BY &apos;password1&apos;;</div><div class="line">4、修改user01密码</div><div class="line">SET PASSWORD FOR &apos;user01&apos;@&apos;localhost&apos; = PASSWORD(&apos;password2&apos;);</div><div class="line">5、授权</div><div class="line">a)、user01管理db01全部权限</div><div class="line">GRANT ALL PRIVILEGES ON db01.* TO user01;</div><div class="line">b)、user02查看权限，并修改密码</div><div class="line">GRANT SELECT  ON *.* TO &apos;user02&apos;@&apos;%&apos; IDENTIFIED by &apos;password2&apos;;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/cj7sb6dvp0005bgnnb99tbj7b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="souco">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/big.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="souco">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/11/cj7sb6dvp0005bgnnb99tbj7b/" itemprop="url">IDEA内存参数配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T18:07:02+08:00">
-                2017-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="IDEA内存参数配置"><a href="#IDEA内存参数配置" class="headerlink" title="IDEA内存参数配置"></a>IDEA内存参数配置</h4><ul>
-<li><code>-Xms512m</code>：<code>JVM</code>起始内存</li>
-<li><code>-Xmx1280m</code>：<code>JVM</code>分配最大内存</li>
-<li><code>-XX:PermSize=300m</code>：虚拟机为<code>java</code>永久生成对象内存配置，起始内存</li>
-<li><code>-XX:MaxPermSize=512m</code>：虚拟机为<code>java</code>永久生成对象内存配置，最大内存</li>
-<li><code>Tomcat</code>：<code>-Xms512m -Xmx1280m -XX:PermSize=300m -XX:MaxPermSize=512m</code></li>
-<li><code>GWT</code>：<code>-Xms512m -Xmx1280m -XX:PermSize=256m -XX:MaxPermSize=512m</code></li>
-<li><code>GWT</code>大内存配置：<code>-Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m</code></li>
-</ul>
-<p><code>IDEA</code>常用内存参数配置，每次配项目都是去查笔记，<code>ctrl+c,ctrl+v</code>…</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1855,7 +1804,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1866,7 +1815,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1877,7 +1826,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -1,9 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[从达梦数据库适配oracle数据库问题合集]]></title>
+    <url>%2F2017%2F09%2F20%2Fcj7sbgb6x000iwonnf3ckbnyt%2F</url>
+    <content type="text"><![CDATA[ORA-00923: 未找到要求的 FROM 关键字sql代码如下：123select *, row_number() over (partition by projectid order by createtime desc) rn from c_ins_business_info 报错：12java.sql.SQLException: ORA-00923: 未找到要求的 FROM 关键字; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-00923: 未找到要求的 FROM 关键字 如果有全选*的，需要在前面加上改表的简写或全称。修改后sql：123select info.*, row_number() over (partition by projectid order by createtime desc) rn from c_ins_business_info info ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBERsql如下：1round(sum(case when substr(psortparent,13,1) in (&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;) then grossinvestment else 0 end)/10000,2) &quot;d2&quot;, 在这里，grossinvestment 是 number 类型报错：12java.sql.SQLException: ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER; bad SQL grammar []; nested exception is java.sql.SQLException: ORA-00932: 数据类型不一致: 应为 CHAR, 但却获得 NUMBER 不知道为什么，这里的0要加上引号，也是醉了。修改后sql：1round(sum(case when substr(psortparent,13,1) in (&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;) then grossinvestment else &apos;0&apos; end)/10000,2) &quot;d2&quot;,]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle 达梦</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[通过spring配置文件配置mybatis的dialect]]></title>
+    <url>%2F2017%2F09%2F20%2Fcj7sbgb6x000xwonnefynaaa3%2F</url>
+    <content type="text"><![CDATA[Spring整合MyBatis配置dialect公司最近的项目使用了达梦数据库和MyBatis,由于MyBatis的分页插件PageHelper支持的数据库类型未包括达梦数据库，由于众所周知的原因，我们配置数据库方言dialect为oracle。以下是在Spring配置文件中的配置。另外还有在MyBatis配置文件的配置方式，网上都有就不贴了。12345678910111213141516171819202122&lt;!-- myBatis --&gt;&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt; &lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt; &lt;!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 --&gt; &lt;property name=&quot;mapperLocations&quot;&gt; &lt;array&gt; &lt;value&gt;classpath:app/**/mapping/*Mapper.xml&lt;/value&gt; &lt;value&gt;classpath:com/tjsoft/dataopen/mapping/*Mapper.xml&lt;/value&gt; &lt;/array&gt; &lt;/property&gt; &lt;property name=&quot;plugins&quot;&gt; &lt;array&gt; &lt;bean class=&quot;com.github.pagehelper.PageHelper&quot;&gt; &lt;property name=&quot;properties&quot;&gt; &lt;value&gt; dialect=oracle &lt;/value&gt; &lt;/property&gt; &lt;/bean&gt; &lt;/array&gt; &lt;/property&gt;&lt;/bean&gt;]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Spring MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[My97DatePicker插件报错的问题解决]]></title>
+    <url>%2F2017%2F09%2F20%2Fcj7sbgb6h0002wonn98dpn8lp%2F</url>
+    <content type="text"><![CDATA[###项目页面中使用了时间选择插件My97DatePicker插件。父页面通过iframe引入改页面。父页面点击iframe以外的内容时，报错：1Uncaught TypeError: Cannot read property 'getComputedStyle' of null 在父页面引入改插件WdatePicker.js即可。]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>js My97DatePicker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[配置springMVC返回json数据]]></title>
-    <url>%2F2017%2F09%2F20%2Fcj7sb6dw4000cbgnngx96a32h%2F</url>
-    <content type="text"><![CDATA[配置SpringMVC返回Json数据同时避免json数据属性名有引号的情况：1234567891011121314151617181920&lt;bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"&gt; &lt;property name="supportedMediaTypes"&gt; &lt;list&gt; &lt;!-- 避免Ajax获取的json属性名带有引号 --&gt; &lt;value&gt;application/json;charset=UTF-8&lt;/value&gt; &lt;!-- 避免IE执行AJAX时,返回JSON出现下载文件 --&gt; &lt;value&gt;text/html;charset=UTF-8&lt;/value&gt; &lt;/list&gt; &lt;/property&gt; &lt;/bean&gt; &lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 --&gt; &lt;bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"&gt; &lt;property name="messageConverters"&gt; &lt;list&gt; &lt;ref bean="mappingJacksonHttpMessageConverter" /&gt;&lt;!-- json转换器 --&gt; &lt;/list&gt; &lt;/property&gt; &lt;/bean&gt;]]></content>
+    <url>%2F2017%2F09%2F20%2Fcj7sbgb6x0013wonng19jocpz%2F</url>
+    <content type="text"><![CDATA[配置SpringMVC返回Json数据同时避免json数据属性名有引号的情况：1234567891011121314151617181920&lt;bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"&gt; &lt;property name="supportedMediaTypes"&gt; &lt;list&gt; &lt;!-- 避免Ajax获取的json属性名带有引号 --&gt; &lt;value&gt;application/json;charset=UTF-8&lt;/value&gt; &lt;!-- 避免IE执行AJAX时,返回JSON出现下载文件 --&gt; &lt;value&gt;text/html;charset=UTF-8&lt;/value&gt; &lt;/list&gt; &lt;/property&gt;&lt;/bean&gt;&lt;!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 --&gt;&lt;bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"&gt; &lt;property name="messageConverters"&gt; &lt;list&gt; &lt;ref bean="mappingJacksonHttpMessageConverter" /&gt;&lt;!-- json转换器 --&gt; &lt;/list&gt; &lt;/property&gt;&lt;/bean&gt;]]></content>
       <categories>
         <category>编程</category>
       </categories>
@@ -13,7 +46,7 @@
   </entry>
   <entry>
     <title><![CDATA[oracle常用操作]]></title>
-    <url>%2F2017%2F08%2F28%2Fcj7sb6dwz001fbgnn8s13i3en%2F</url>
+    <url>%2F2017%2F08%2F28%2Fcj7sbgb6x000ewonnu23ulu38%2F</url>
     <content type="text"><![CDATA[建立表空间和用户的步骤：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273-- 用户建立：create user 用户名 identified by "密码";-- 授权：grant create session to 用户名;grant create table to 用户名;grant create tablespace to 用户名;grant create view to 用户名;-- 表空间-- 建立表空间(一般建N个存数据的表空间和一个索引空间)：create tablespace 表空间名datafile ' 路径(要先建好路径)\***.dbf ' size *Mtempfile ' 路径\***.dbf ' size *Mautoextend on --自动增长-- 还有一些定义大小的命令，看需要 default storage( initial 100K, next 100k,);-- 例子：创建表空间create tablespace DEMOSPACEdatafile 'E:/oracle_tablespaces/DEMOSPACE_TBSPACE.dbf'size 1500Mautoextend on next 5M maxsize 3000M;-- 删除表空间drop tablespace DEMOSPACE including contents and datafiles-- 用户权限-- 授予用户使用表空间的权限：alter user 用户名 quota unlimited on 表空间;-- 或 alter user 用户名 quota *M on 表空间;-- 表空间CREATE TABLESPACE sdtDATAFILE 'F:\tablespace\demo' size 800M EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;-- 索引表空间CREATE TABLESPACE sdt_IndexDATAFILE 'F:\tablespace\demo' size 512M EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;--2.建用户create user demo identified by demodefault tablespace std;-- 在11G中有个新特性，当表无数据时，不分配segment，以节省空间，导致不能导出空表-- 建立了空的数据库后，马上执行以下关闭此特性alter system set deferred_segment_creation=flase sscope=spfile;--3.赋权grant connect,resource to demo;grant create session to demogrant create any sequence to demo;grant create any table to demo;grant delete any table to demo;grant insert any table to demo;grant select any table to demo;grant unlimited tablespace to demo;grant execute any procedure to demo;grant update any table to demo;grant create any view to demo;--4.导入导出相关权限grant exp_full_database to demo;grant imp_full_database to demo;grant dba to demo;-- 导入导出命令-- ip导出方式：exp demo/demo@127.0.0.1:1521/orcl file=f:/f.dmp full=yexp demo/demo@orcl file=f:/f.dmp full=yimp demo/demo@orcl file=f:/f.dmp full=y ignore=y]]></content>
       <categories>
         <category>数据库</category>
@@ -24,7 +57,7 @@
   </entry>
   <entry>
     <title><![CDATA[采用html的a标签，href链接文件名为中文时无法下载解决方案]]></title>
-    <url>%2F2017%2F08%2F28%2Fcj7sb6dwk001bbgnnyj51mt7u%2F</url>
+    <url>%2F2017%2F08%2F28%2Fcj7sbgb6x0015wonno2o92xcx%2F</url>
     <content type="text"><![CDATA[采用html的a标签，href链接文件名为中文时无法下载解决方案 最简单的下载文件的方式，大家都清楚，是采用html中的a标签的href连接形式进行下载。只需要将文件的全路径赋值给href即可。但是这样的话，有的文件默认可以下载，有的则浏览器在网页上直接打开，有时候还会是乱码。这跟客户端没有关系，客户端完全是被动的，他在接收到html流的时候，分析报头，如果报头中指定了文件的下载方式，比如，为excel，则他就会弹框，提示用户是在线打开，还是说保存下载，如果报头中没有指定，浏览器就直接打开，这样对于特殊文件，很容易会产生乱码。所以为了避免这一点，需要在服务器端进行指定。如果采用程序开发向客户端输出流进行下载的话，很容易指定，如下1234567response.setContentType("application/x-msdownload; charset=utf-8"); if (request.getHeader("User-Agent").toLowerCase().indexOf("firefox") &gt; 0) response.setHeader("Content-Disposition", "attachment; filename=" + new String(filename.getBytes("UTF-8"), "ISO8859-1"));//firefox浏览器 else if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") &gt; 0) response.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(filename, "UTF-8"));//IE浏览器 如果用&lt;a&gt;的连接的话，需要修改服务的设置，对于tomcat而言，查看conf/web.xml，寻找所有的mime类型，如果存在你需要下载的文件的话，即不用进行修改，如果不存在的话，需要添加，然后重启服务器，给&lt;a&gt;标签赋值要下载文件的全路径即可（比如xls的文件就不用修改配置，而rar就需要配置，zip也不需要配置）；注意，如果路径中包含中文的话，还需要稍微改动，否则可能会无法下载，需要在Server.xml文件中，在http端口设置处，需要加上编码，如下：1234&lt;Connector port="8282" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" URIEncoding="utf-8" /&gt; 注意URIEncoding，之所以加上，是因为，针对tomcat而言，tomcat对于get方式请求过来的编码，是在这里进行配置的，对于post请求过来的编码解析方式，可以用传统的request.setContent**方式进行配置，所以文件路径中存在中文名，你必须得告诉服务器怎么解析，以什么样编码进行解析即可！]]></content>
       <categories>
         <category>Java</category>
@@ -35,7 +68,7 @@
   </entry>
   <entry>
     <title><![CDATA[基于GithubPage的hexo博客搭建简明教程]]></title>
-    <url>%2F2017%2F08%2F26%2Fcj7sb6dwk0019bgnnlrthbypn%2F</url>
+    <url>%2F2017%2F08%2F26%2Fcj7sbgb6x000twonnaabur9cb%2F</url>
     <content type="text"><![CDATA[0.相关文档hexo文档(https://hexo.io/zh-cn/docs/deployment.html)NexT文档(http://theme-next.iissnan.com/) 1.安装 Node（必须） 官网下载安装即可。2.安装 Git（必须） 官网下载安装即可。3.申请 GitHub（必须） 已有。4.正式安装 HEXONode 和 Git 都安装好后执行如下命令安装 hexo ：1$ sudo npm install -g hexo 5.初始化创建一个文件夹，如：Blog ，下文统称此目录为/，未提及则默认为此目录在博客根目录下里执行 hexo init 的。命令：1hexo init 6.生成静态页面1hexo generate //（hexo g 简写） 7.本地启动1hexo server () //（hexo s 简写） 8. 配置 NexT 主题8.1 下载主题1git clone https://github.com/iissnan/hexo-theme-next themes/next 8.2 修改站点配置文件打开站点配置文件（config.yml）,找到 theme 字段，并将其值更改为 next ,如：Blog1theme: next 8.3 主题设定8.3.0 设置主题外观123#scheme: Muse#scheme: Mistscheme: Pisces 8.3.1 设置侧栏123sidebar: position: left display: hide 8.3.2 设置头像将头像文件放置在/themes/next/source/images/下。修改主题配置文件1avatar: /images/filename.png //此处为你的文件名 8.4 设置菜单及菜单页面8.4.1 在主题配置文件设置要显示的菜单:12345678menu: home: / categories: /categories/ about: /about/ archives: /archives/ tags: /tags/ sitemap: /sitemap.xml commonweal: /404/ 8.4.2 添加标签页新建页面：1hexo new page tags 将生成的页面（/source/tags/index.md）的类型设置为 tags :1234title: 标签date: 2014-12-22 12:39:04type: &quot;tags&quot;--- 8.4.3 添加分类页新建页面：1hexo new page categories 将生成的页面（/source/categories/index.md）的类型设置为 categories :1234title: 标签date: 2014-12-22 12:39:04type: &quot;categories&quot;--- 8.5 配置友情链接在主题配置文件中：12links: baidu: https://www.baidu.com 配置搜索安装 hexo-generator-searchdb，在站点的根目录下执行以下命令：1$ npm install hexo-generator-searchdb --save 编辑站点配置文件，新增以下内容到任意位置：12345search: path: search.xml field: post format: html limit: 10000 编辑 主题配置文件，启用本地搜索功能：123# Local searchlocal_search: enable: true 站点配置以下都是基于站点配置文件（config.yml） 配置语言为简体中文1language: zh-Hans ###配置提交到 github 的信息在站点配置文件下：12345deploy: type: git repo: git@github.com:***/***.github.io.git branch: master message: article update &#123;&#123; now(&apos;YYYY-MM-DD HH:mm:ss&apos;) &#125;&#125;]]></content>
       <categories>
         <category>其他</category>
@@ -46,7 +79,7 @@
   </entry>
   <entry>
     <title><![CDATA[MySQL配置从任意IP可访问的账户]]></title>
-    <url>%2F2017%2F05%2F16%2Fcj7sb6dv90000bgnn4k5m1phn%2F</url>
+    <url>%2F2017%2F05%2F16%2Fcj7sbgb6h0006wonnouherbn8%2F</url>
     <content type="text"><![CDATA[MySQL 配置从任意IP可访问的账户：user表中用户名@后面是%百分号的都是任意地址可连接的如：&#39;souco&#39;@&#39;%&#39; 另外：查看 MySQL 数据库中所有用户1mysql&gt; SELECT DISTINCT CONCAT(&apos;User: &apos;&apos;&apos;,user,&apos;&apos;&apos;@&apos;&apos;&apos;,host,&apos;&apos;&apos;;&apos;) AS query FROM mysql.user; 查看数据库中具体某个用户的权限12mysql&gt; show grants for &apos;cactiuser&apos;@&apos;%&apos;; mysql&gt; select * from mysql.user where user=&apos;cactiuser&apos; \G 查看 user表结构，需要具体的项可结合表结构来查询1mysql&gt; desc mysql.user;]]></content>
       <categories>
         <category>编程</category>
@@ -57,7 +90,7 @@
   </entry>
   <entry>
     <title><![CDATA[The user specified as a definer ('root'@'%') does not exist when using LOCK TABLES 错误的解决方法]]></title>
-    <url>%2F2017%2F04%2F28%2Fcj7sb6dw4000gbgnn0hs42uhq%2F</url>
+    <url>%2F2017%2F04%2F28%2Fcj7sbgb6h000cwonn7503oc4x%2F</url>
     <content type="text"><![CDATA[执行数据库导出语句：1mysqldump -uroot -p qyw &gt; E:/sql/20170428125848qyw.sql 报错：1mysqldump: Got error: 1449: The user specified as a definer (&apos;root&apos;@&apos;%&apos;) does not exist when using LOCK TABLES 权限问题，授权给root所有sql权限12345mysql&gt; grant all privileges on *.* to root@&quot;%&quot; identified by &quot;.&quot;;Query OK, 0 rows affected (0.00 sec)mysql&gt; flush privileges;Query OK, 0 rows affected (0.00 sec) 再次执行mysqldump -uroot -p qyw &gt; E:/sql/20170428125848qyw.sql成功。 另外附上今天发现的数据导出导出的问题。因为平常都是使用sqlyog导入导出数据，最近一个项目的数据库比较大，转而使用命令行的导入。今天突然发现命令行导入一个数据库非常慢，然后研究了下原因，发现sqlyog导出的数据库sql文件，使用命令导入时非常慢，导入速度还没有sqlyog导入的快。比较了下sqlyog导出的sql文件与mysqldump导出的sql文件，发现两者还是有些区别的。当然，也可能是sqlyog导出的时候有些选项没有勾选。尝试后发现，与sqlyog导出的sql文件相比，mysqldump导出的sql文件在使用命令导入时非常快。因此，使用上来说，如果数据比较小，用sqlyog导出导入就可以。如果数据比较大，用mysqldump导出然后用命令导入就比较快。]]></content>
       <categories>
         <category>编程</category>
@@ -68,7 +101,7 @@
   </entry>
   <entry>
     <title><![CDATA[Spring Mail 发送邮件，没有主题，没有收件人，邮件内容显示乱码问题]]></title>
-    <url>%2F2017%2F04%2F13%2Fcj7sb6dvp0001bgnnkstqxz8u%2F</url>
+    <url>%2F2017%2F04%2F13%2Fcj7sbgb6h0008wonntvowpko1%2F</url>
     <content type="text"><![CDATA[使用 Spring Mail 发送邮件，在本地 Windows 环境下正常，部署到 linux 服务器的时候出现没有主题，没有收件人，邮件内容显示乱码的问题。过程：一开始发现邮件无法发送，报错，报错信息核心：554 DT:SPM根据网上搜索资料提示，发送邮件给配置的邮箱自己，发送成功，出现没有主题，没有收件人，邮件内容显示乱码的情况。初步认为是 linux 和 windows 环境差异问题，然而查了半天也没什么效果。然后又排查是否主机所在网络环境是否对发送出去的邮件做了过滤或者限制，也并没有。各种编码的方式也尝试过，也还是乱码。最后发现是 Jenkins 在集成编译的时候加了两个 jar 包：12geronimo-stax-api_1.0_spec-1.0.1.jargeronimo-javamail_1.4_spec-1.2.jar 然而这两个 jar 包在本地并没有，不知道是不是因为这样，本地环境邮件发送是正常的…将这两个 jar 包干掉，邮件正常发送。附网上同问题解决文章：JavaMail 发送邮件 无主题 无收件人 邮件内容乱码 解决Mark.]]></content>
       <categories>
         <category>编程</category>
@@ -80,7 +113,7 @@
   </entry>
   <entry>
     <title><![CDATA[常用Git命令]]></title>
-    <url>%2F2017%2F04%2F12%2Fcj7sb6dvp0006bgnn5sdlvdpk%2F</url>
+    <url>%2F2017%2F04%2F12%2Fcj7sbgb6x000lwonn3018qz6h%2F</url>
     <content type="text"><![CDATA[git init 初始化 Git git add README.md 将文件添加到暂存区域 git add . 将当前目录下的所有文件添加到暂存区域 git commit -m &quot;add a readme file&quot; 将文件提交到Git仓库 git clone https://github.com/n0tr00t/Sreg 克隆GitHub上别人的项目 git commit -am &quot;change the license file&quot; 一步实现add和commit git reset HEAD~ 把Git仓库的文件还原到暂存区域 git checkout 把暂存区域的文件还原到工作目录 git log 查看历史提交记录 git reset 11c2929 回滚到特定ID的快照 git reset --hard 31f46be 根据快照ID往前滚 git reflog 查看每次执行完命令，HEAD指向的版本号 git commit --amend -m &quot;新的提交说明&quot; 修改最后一次提交 git rm test.py 删除工作目录和暂存区域的文件（取消跟踪） git checkout -- README.md checkout单个文件 git mv game.py wordgame.py 重命名文件 git branch feature 创建分支 git log --decorate [--oneline] 查看当前分支情况[oneline单行查看] git log --oneline --decorate --graph --all 查看系统分支情况[graph绘制分支图,all显示所有分支] git checkout feature 切换分支 git merge feature 合并feature分支 git checkout -b feature2 创建一个新的分支feature2并checkout出来 git branch -d feature2 删除feature2分支 git branch -D feature 当feature分支当中有未合并的内容，也强行删除feature分支 git checkout HEAD~ 切换到匿名分支（当前版本上一个版本） 关于提交代码到GitHub git remote add origin git@github.com:yourName/yourRepo.git 添加远程地址到当前仓库 详谈checkout命令 git checkout HEAD~ README.md 当给定某个文件名时，Git 会从指定的提交中拷贝文件到暂存区域和工作目录 git checkout README.md 如果命令中没有给定具体的快照 ID ，则从暂存区域回复指定文件到工作目录 git checkout --README.md 如果存在README.md分支的话，指定恢复文件，而不是切换分支 其他说明 git status命令时显示On branch master说明我们位于一个叫做master的分支里，这是默认的分支。 git reset HEAD~命令中的HEAD~表示HEAD的上一个版本，如HEAD~~表示HEAD的上上个版本，HEAD~~~表示HEAD的上上个版本，HEAD~10表示HEAD之前第10个版本。 git reset --soft HEAD~表示只移动HEAD的指向，但并不会将快照回滚到暂存区域。（相当于撤销上一次的提交） git reset [--mixed(默认，可省略)] HEAD~将快照回滚到暂存区域。 git reset --hard HEAD~表示不仅移动HEAD的指向，将快照回滚到暂时区域，它还将暂存区域的文件还原到工作目录。 git commit --amend如果后面不附加提交说明的话，会进入修改说明的页面。可以使用快捷键Shift + z + z或者：q！退出。 git rm -f test.py要删除的文件在当前工作目录和暂存区域的内容不一致时，删除会跳出提示，此时添加-f参数即可。 git rm --cache test.py删除暂存区域的文件（保留工作目录的）。 echo *.temp &gt; .gitignore 创建一个.gitignore文件，并让 Git 忽略所有的.temp后缀的文件。 develop开发分支，feature功能分支，release预发布分支，hotfix维护分支。 reset会移动HEAD所在分支的指向，而checkout命令只会移动HEAD自身来指向另一个分支。所以，checkout命令更加安全。]]></content>
       <categories>
         <category>Git</category>
@@ -91,7 +124,7 @@
   </entry>
   <entry>
     <title><![CDATA[MySQL快速创建数据和拥有此数据库所有权限的用户]]></title>
-    <url>%2F2017%2F04%2F12%2Fcj7sb6dvp0004bgnn86jokajy%2F</url>
+    <url>%2F2017%2F04%2F12%2Fcj7sbgb6h0009wonn60dx3v6e%2F</url>
     <content type="text"><![CDATA[1234CREATE DATABASE `jsprun` CHARACTER SET utf8;CREATE USER 'jsprun'@'localhost' IDENTIFIED BY 'jsprun';#①用户名②本地③密码GRANT ALL PRIVILEGES ON jsprun.* TO 'jsprun'@'localhost';FLUSH PRIVILEGES; 其他参考：12345678910111213141、用管理员登陆mysql2、创建数据库create database db01;3、创建用户user01只能本地访问CREATE USER user01@&apos;localhost&apos; IDENTIFIED BY &apos;password1&apos;;user02可以远程访问CREATE USER user02@&apos;%&apos; IDENTIFIED BY &apos;password1&apos;;4、修改user01密码SET PASSWORD FOR &apos;user01&apos;@&apos;localhost&apos; = PASSWORD(&apos;password2&apos;);5、授权a)、user01管理db01全部权限GRANT ALL PRIVILEGES ON db01.* TO user01;b)、user02查看权限，并修改密码GRANT SELECT ON *.* TO &apos;user02&apos;@&apos;%&apos; IDENTIFIED by &apos;password2&apos;;]]></content>
       <categories>
         <category>编程</category>
@@ -102,7 +135,7 @@
   </entry>
   <entry>
     <title><![CDATA[IDEA内存参数配置]]></title>
-    <url>%2F2017%2F04%2F11%2Fcj7sb6dvp0005bgnnb99tbj7b%2F</url>
+    <url>%2F2017%2F04%2F11%2Fcj7sbgb6h0000wonnc1jhc1oc%2F</url>
     <content type="text"><![CDATA[IDEA内存参数配置 -Xms512m：JVM起始内存 -Xmx1280m：JVM分配最大内存 -XX:PermSize=300m：虚拟机为java永久生成对象内存配置，起始内存 -XX:MaxPermSize=512m：虚拟机为java永久生成对象内存配置，最大内存 Tomcat：-Xms512m -Xmx1280m -XX:PermSize=300m -XX:MaxPermSize=512m GWT：-Xms512m -Xmx1280m -XX:PermSize=256m -XX:MaxPermSize=512m GWT大内存配置：-Xms2048m -Xmx2048m -XX:PermSize=256m -XX:MaxPermSize=512m IDEA常用内存参数配置，每次配项目都是去查笔记，ctrl+c,ctrl+v…]]></content>
       <categories>
         <category>编程</category>
@@ -114,7 +147,7 @@
   </entry>
   <entry>
     <title><![CDATA[[转]每天一个Linux命令(1)：ls命令]]></title>
-    <url>%2F2017%2F04%2F10%2Fcj7sb6dw4000abgnn122khc7g%2F</url>
+    <url>%2F2017%2F04%2F10%2Fcj7sbgb6x000qwonn36o1h222%2F</url>
     <content type="text"><![CDATA[[转]每天一个Linux命令(1)：ls命令 作者：peida链接：传送门 ls命令是linux下最常用的命令。ls命令就是list的缩写，缺省下ls用来打印出当前目录的清单。如果ls指定其他目录，那么就会显示指定目录里的文件及文件夹清单。 通过ls命令不仅可以查看linux文件夹包含的文件而且可以查看文件权限(包括目录、文件夹、文件权限)查看目录信息等等。ls命令在日常的linux操作中用的很多! 1. 命令格式：ls [选项] [目录名]2. 命令功能：列出目标目录中所有的子目录和文件。3. 常用参数： -a, 即单词all的意思，列出目录下的所有文件，包括以.开头的隐含文件-A, 同-a，但不列出.(表示当前目录)和..(表示当前目录的父目录)-c, 配合-lt：根据ctime排序及显示ctime(文件状态最后更改的时间)；配合-l：显示ctime但根据名称排序否则：根据ctime排序-C, 每栏由上至下列出项目–color[=WHEN],控制是否使用色彩分辨文件。WHEN可以是never、always或auto其中之一-d, –directory将目录象文件一样显示，而不是显示其下的文件。-D, –dired 产生适合 Emacs 的 dired 模式使用的结果-f, 对输出的文件不进行排序，-aU 选项生效，-lst 选项失效-g, 类似-l,但不列出所有者-G, –no-group 不列出任何有关组的信息-h, –human-readable 以容易理解的格式列出文件大小 (例如 1K 234M 2G)–si, 类似-h,但文件大小取1000的次方而不是1024-H, –dereference-command-line使用命令列中的符号链接指示的真正目的地–indicator-style=方式, 指定在每个项目名称后加上指示符号&lt;方式&gt;：none(默认)，classify(-F)，file-type(-p)-i, –inode印出每个文件的 inode 号-I, –ignore=样式 不印出任何符合shell万用字符&lt;样式&gt;的项目-k 即 –block-size=1K,以k字节的形式表示文件的大小。-l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来。-L, –dereference 当显示符号链接的文件信息时，显示符号链接所指示的对象而并非符号链接本身的信息-m, 所有项目以逗号分隔，并填满整行行宽-o, 类似-l,显示文件的除组信息外的详细信息。-r, –reverse依相反次序排列-R, –recursive同时列出所有子目录层-s, –size以块大小为单位列出所有文件的大小-S, 根据文件大小排序–sort=WORD, 以下是可选用的WORD和它们代表的相应选项：extension -X status -c none -U time -t size -S atime -u time -t access -u version -v use -u-t, 以文件修改时间排序-u, 配合-lt:显示访问时间而且依访问时间排序；配合-l:显示访问时间但根据名称排序；否则：根据访问时间排序-U, 不进行排序;依文件系统原有的次序列出项目-v, 根据版本进行排序-w, –width=COLS自行指定屏幕宽度而不使用目前的数值-x, 逐行列出项目而不是逐栏列出-X, 根据扩展名排序-1, 每行只列出一个文件–help 显示此帮助信息并离开–version 显示版本信息并离开 4. 常用范例：例一：列出/home/peidachang文件夹下的所有文件和目录的详细资料命令：ls -l -R /home/peidachang在使用ls命令时要注意命令的格式：在命令提示符后，首先是命令的关键字，接下来是命令参数，在命令参数之前要有一短横线“-”，所有的命令参数都有特定的作用，自己可以根据需要选用一个或者多个参数，在命令参数的后面是命令的操作对象。在以上这条命令ls -l -R /home/peidachang中，ls 是命令关键字，-l -R是参数，/home/peidachang是命令的操作对象。在这条命令中，使用到了两个参数，分别为l和R，当然，你也可以把他们放在一起使用，如下所示：命令：ls -lR /home/peidachang这种形式和上面的命令形式执行的结果是完全一样的。另外，如果命令的操作对象位于当前目录中，可以直接对操作对象进行操作;如果不在当前目录则需要给出操作对象的完整路径，例如上面的例子中，我的当前文件夹是peidachang文件夹，我想对home文件夹下的peidachang文件进行操作，我可以直接输入ls -lR peidachang，也可以用ls -lR /home/peidachang。 例二：列出当前目录中所有以“t”开头的目录的详细内容，可以使用如下命令：命令：ls -l t*可以查看当前目录下文件名以“t”开头的所有文件的信息。其实，在命令格式中，方括号内的内容都是可以省略的，对于命令ls而言，如果省略命令参数和操作对象，直接输入“ls”，则将会列出当前工作目录的内容清单。 例三：只列出文件下的子目录命令：ls -F /opt/soft |grep /$列出 /opt/soft 文件下面的子目录输出：1234[root@localhost opt]# ls -F /opt/soft |grep /$jdk1.6.0_16/subversion-1.6.1/tomcat6.0.32/ 命令：ls -l /opt/soft | grep “^d”列出 /opt/soft 文件下面的子目录详细情况输出：1234[root@localhost opt]# ls -l /opt/soft | grep &quot;^d&quot;drwxr-xr-x 10 root root 4096 09-17 18:17 jdk1.6.0_16drwxr-xr-x 16 1016 1016 4096 10-11 03:25 subversion-1.6.1drwxr-xr-x 9 root root 4096 2011-11-01 tomcat6.0.32 例四：列出目前工作目录下所有名称是s开头的档案，愈新的排愈后面，可以使用如下命令：命令：ls -ltr s*输出：123456789101112131415[root@localhost opt]# ls -ltr s*src:总计 0script:总计 0soft:总计 350644drwxr-xr-x 9 root root 4096 2011-11-01 tomcat6.0.32-rwxr-xr-x 1 root root 81871260 09-17 18:15 jdk-6u16-linux-x64.bindrwxr-xr-x 10 root root 4096 09-17 18:17 jdk1.6.0_16-rw-r--r-- 1 root root 205831281 09-17 18:33 apache-tomcat-6.0.32.tar.gz-rw-r--r-- 1 root root 5457684 09-21 00:23 tomcat6.0.32.tar.gz-rw-r--r-- 1 root root 4726179 10-10 11:08 subversion-deps-1.6.1.tar.gz-rw-r--r-- 1 root root 7501026 10-10 11:08 subversion-1.6.1.tar.gzdrwxr-xr-x 16 1016 1016 4096 10-11 03:25 subversion-1.6.1 例五：列出目前工作目录下所有档案及目录;目录于名称后加”/”, 可执行档于名称后加”*”命令：ls -AF输出：12[root@localhost opt]# ls -AFlog/ script/ soft/ src/ svndata/ web/ 例六：计算当前目录下的文件数和目录数命令：12ls -l * |grep “^-“|wc -l —文件个数ls -l * |grep “^d”|wc -l —目录个数 例七: 在ls中列出文件的绝对路径命令：ls | sed “s:^:pwd/:”输出：1234567[root@localhost opt]# ls | sed &quot;s:^:`pwd`/:&quot;/opt/log/opt/script/opt/soft/opt/src/opt/svndata/opt/web 例九：列出当前目录下的所有文件（包括隐藏文件）的绝对路径， 对目录不做递归命令：find $PWD -maxdepth 1 | xargs ls -ld输出：12345678[root@localhost opt]# find $PWD -maxdepth 1 | xargs ls -lddrwxr-xr-x 8 root root 4096 10-11 03:43 /optdrwxr-xr-x 2 root root 4096 2012-03-08 /opt/logdrwxr-xr-x 2 root root 4096 2012-03-08 /opt/scriptdrwxr-xr-x 5 root root 4096 10-11 03:21 /opt/softdrwxr-xr-x 2 root root 4096 2012-03-08 /opt/srcdrwxr-xr-x 4 root root 4096 10-11 05:22 /opt/svndatadrwxr-xr-x 4 root root 4096 10-09 00:45 /opt/web 例十：递归列出当前目录下的所有文件（包括隐藏文件）的绝对路径命令： find $PWD | xargs ls -ld例十一：指定文件时间输出格式命令：1ls -tl –time-style=full-iso 输出：123[root@localhost soft]# ls -tl --time-style=full-iso总计 350644drwxr-xr-x 16 1016 1016 4096 2012-10-11 03:25:58.000000000 +0800 subversion-1.6.1 1ls -ctl –time-style=long-iso 输出：12345[root@localhost soft]# ls -ctl --time-style=long-iso 总计 350644 drwxr-xr-x 16 1016 1016 4096 2012-10-11 03:25 subversion-1.6.1 扩展： 显示彩色目录列表打开/etc/bashrc, 加入如下一行:alias ls=”ls –color” 下次启动bash时就可以像在Slackware里那样显示彩色的目录列表了, 其中颜色的含义如下: 1. 蓝色–&gt;目录 2. 绿色–&gt;可执行文件 3. 红色–&gt;压缩文件 4. 浅蓝色–&gt;链接文件 5. 灰色–&gt;其他文件]]></content>
       <categories>
         <category>编程</category>
@@ -126,7 +159,7 @@
   </entry>
   <entry>
     <title><![CDATA[部署hexo到github遇到的坑]]></title>
-    <url>%2F2017%2F04%2F06%2Fcj7sb6dw4000ibgnnl9s6or0z%2F</url>
+    <url>%2F2017%2F04%2F06%2Fcj7sbgb6x0010wonn67pycwyh%2F</url>
     <content type="text"><![CDATA[其实 Hexo 的文档非常非常的详细。但是我一开始其实不是对着 Hexo 的文档部署，因为还有一些别的步骤，例如部分 Git 和 GitHub 的相关申请配置等等。所以遇到坑了吧。如下 项目deploy到 GitHub 后，访问总是404查了半天也没查出为啥。参照了别人的项目，发现少个CNAME文件，于是在 GitHub 加上去，结果成功了。郁闷的是重新发布过后又404了。看了下，CNAME文件又消失了。才想到每次生成网页，hexo/public下的文件都会被覆盖。于是查了下，不想被覆盖的内容需要放在hexo/resource目录下，如CNAME、favo.icon等文件。]]></content>
       <categories>
         <category>编程</category>
